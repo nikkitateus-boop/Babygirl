@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Question</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  font-family:Arial;
+  overflow:hidden;
+}
+.card{
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  max-width:350px;
+}
+button{
+  padding:12px 20px;
+  border:none;
+  border-radius:25px;
+  font-size:16px;
+  cursor:pointer;
+  position:absolute;
+}
+#yes{
+  background:#ff4d6d;
+  color:white;
+  left:50%;
+  transform:translateX(-50%);
+}
+#no{
+  background:#999;
+  color:white;
+  top:60px;
+  left:50%;
+  transform:translateX(-50%);
+}
+.heart{
+  position:fixed;
+  top:-10px;
+  font-size:20px;
+  animation:fall linear forwards;
+  pointer-events:none;
+}
+@keyframes fall{
+  to{transform:translateY(110vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2>Will you be my Valentine? 💖</h2>
+  <button id="yes">YES</button>
+  <button id="no">NO</button>
+</div>
+
+<script>
+const noBtn=document.getElementById("no");
+const yesBtn=document.getElementById("yes");
+const hearts=["💖","💘","❤️","💝"];
+
+noBtn.addEventListener("mouseover",()=>{
+  noBtn.style.left=Math.random()*80+"%";
+  noBtn.style.top=Math.random()*80+"%";
+});
+
+yesBtn.addEventListener("click",()=>{
+  window.location.href="yes.html";
+});
+
+function createHeart(){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerText=hearts[Math.floor(Math.random()*hearts.length)];
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(Math.random()*2+3)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),5000);
+}
+setInterval(createHeart,300);
+</script>
+
+</body>
+</html>
